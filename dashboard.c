@@ -4,13 +4,19 @@
 
 int main(int argc, char *argv[])
 {
-    int ch;
+    int ch = 0;
 
     initscr();
 
-    ch = getch();
-    printw("Character: %d\n", ch);
+    cbreak();
+    noecho();
+    scrollok(stdscr, true);
 
+    while (ch != 'q') {
+        ch = getch();
+        printw("Character: %d\n", ch);
+        refresh();
+    }
     endwin();
     return 0;
 }
